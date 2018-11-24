@@ -42,5 +42,3 @@ for j in r.json():
         directory = regex.search(folders[0]).group(1)
         create_and_cd_dir(directory)
         subprocess.call(f'git clone git@github.com:{user}/{repo_name}', shell=True)
-    
-    
