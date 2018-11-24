@@ -61,12 +61,14 @@ def create_repo():
     dir_name = pwd[pwd.rfind('/') + 1 : len(pwd)]
     repo = {'name': dir_name}
     r = requests.post(f'{github_api}/user/repos', data=json.dumps(repo), headers=headers, auth=(input('user: '), input('password: ')))
+    # git_url = r.json()['ssh_url']
+    # print(git_url)
+    if True: #git_url:
+        subprocess.call('git status', shell=True)
+        subprocess.call(f'git remote add origin {get_github_repo(dir_name)} && git push origin master', shell=True)
     git_url = r.json()['ssh_url']
     print(git_url)
-    if git_url:
-        subprocess.call('git status', shell=True)
-        subprocess.call(f'git remote add origin {git_url} && git push origin master', shell=True)
-
+    
 if (__name__=='__main__'):
     if 'clone' in sys.argv:
         clone_repos()
