@@ -1,4 +1,12 @@
 # github-folders
+call with `python github-folders.py`
+### parameters:
+####`clone`
+Makes it easy to organize your repositories, and transfer setup between machines. gets all your repos, if you have `folder-<foldername>` in topics, it will clone it under `<rootDirectory>/<foldername>.`
+
+#### `create-repo`
+Creates a new github repository from current directory, adds it as remote, runs `push --set-upstream` (yeah I'm that lazy)
+
 ## TODO 
 - check if folder already there
 - run git fetch
