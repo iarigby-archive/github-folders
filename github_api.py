@@ -5,6 +5,8 @@ import cache
 github_api = 'https://api.github.com'
 headers = {'Accept': 'application/vnd.github.mercy-preview+json'}
 
+default_locations = ['no_location', 'all']
+default_categories = ['uncategorized']
 
 def get_github_link(repo_name, user):
     return f'{github_api}/repos/{user}/{repo_name}'
@@ -14,7 +16,7 @@ category_regex = re.compile(r'category:([a-zA-Z0-9-]*)')
 
 def match_github_description(reply_json, regex):
     #return regex.search(reply_json['description'])
-    return re.match(regex, 'category:school location:home').group(0)
+    return re.match(regex, reply_json).group(0)
 
 def get_user_repos(user):
     # repos = requests.get(f'https://api.github.com/users/{user}/repos', headers=headers).json()
