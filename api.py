@@ -1,4 +1,5 @@
-from flask import Flask
+import github_api
+from flask import Flask,jsonify
 app = Flask(__name__)
 
 @app.route('/api/healthCheck')
@@ -9,7 +10,7 @@ def health_check():
 @app.route('/api/<user>/repos')
 def show_user_repos(user):
     #returns the list ordered by create date
-    return 'User %s' % user
+    return jsonify(github_api.get_user_repos(user))
 
 
 # api/:user/repos/location/
