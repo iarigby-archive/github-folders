@@ -28,17 +28,25 @@ def show_user_repos_by_location(user):
 @app.route('/api/<user>/repos/location/<location>')
 def show_user_repos_for_location(user, location):
     #returns the list of all repos which have a location tag "location"
-    return 'User %s' % user
+    repos = github_api.get_user_repos_by_tag(user, 'location')
+    if location in repos:
+        return jsonify(repos[location])
+    else:
+        return 'none'
 
 # api/:user/repos/category
 @app.route('/api/<user>/repos/category')
 def show_user_repos_by_category(user):
     #returns the list of all repos sorted by category
     # for example personal projects, school projects, etc
-    return 'User %s' % user
+    return jsonify(github_api.get_user_repos_by_tag(user, 'category'))
 
 # api/:user/repos/category/:category
 @app.route('/api/<user>/repos/category/<category>')
 def show_user_repos_for_category(user, category):
     # returns the list of all repos which have a category tag "category"
-    return 'User %s' % user
+    repos = github_api.get_user_repos_by_tag(user, 'category')
+    if category in repos:
+        return jsonify(repos[category])
+    else:
+        return 'none'
