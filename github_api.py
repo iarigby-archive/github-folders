@@ -1,4 +1,4 @@
-import requests
+#import requests
 import re
 import cache
 
@@ -11,8 +11,12 @@ default_categories = ['uncategorized']
 def get_github_link(repo_name, user):
     return '{github_api}/repos/{user}/{repo_name}'
 
-location_regex = re.compile(r'location:([a-zA-Z0-9-]*)')
+location_regex = re.search(r"location:([a-zA-Z0-9-]*)","home")
+#result = location_regex.match("home")
+#print(result)
 category_regex = re.compile(r'category:([a-zA-Z0-9-]*)')
+
+print(category_regex)
 
 def match_github_description(reply_json, regex):
     #return regex.search(reply_json['description'])
