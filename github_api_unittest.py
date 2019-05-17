@@ -5,7 +5,7 @@ class TestApiController(unittest.TestCase):
 
     def test_parsing(self):
         parsed = github_api.match_github_description(
-            'abcd location:home category:personal',
+            {'description': 'abcd location:home category:personal'},
             github_api.location_regex)
         self.assertEqual(parsed, 'home', 'should extract the tag correctly')
         

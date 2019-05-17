@@ -16,7 +16,7 @@ category_regex = re.compile(r'category:([a-zA-Z0-9-]*)')
 
 def match_github_description(reply_json, regex):
     #return regex.search(reply_json['description'])
-    return re.match(regex, reply_json).group(0)
+    return regex.search(reply_json['description']).group(1)
 
 def get_user_repos(user):
     # repos = requests.get(f'https://api.github.com/users/{user}/repos', headers=headers).json()
