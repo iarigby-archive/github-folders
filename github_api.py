@@ -58,3 +58,10 @@ def parse_descriptions(repos, regex_type):
     #return list(map(lambda x: match_github_description(x, regex_type), repos))
     return categorized_repos
 # compdef 
+
+def get_user_repos_by_tag(user, tag):
+    if tag is 'location':
+        repos = parse_descriptions(get_user_repos(user), location_regex)
+    elif tag is 'category':
+        repos = parse_descriptions(get_user_repos(user), category_regex)
+    return repos
