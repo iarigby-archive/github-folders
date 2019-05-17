@@ -11,7 +11,6 @@ default_categories = ['untagged']
 def get_github_link(repo_name, user):
     return f'{github_api}/repos/{user}/{repo_name}'
 
-# re.search(r'([a-zA-Z0-9-]*)', get_github_link).group()
 location_regex = re.compile(r'location:([a-zA-Z0-9-]*)')
 category_regex = re.compile(r'category:([a-zA-Z0-9-]*)')
 
@@ -37,14 +36,10 @@ def get_repo_info(repo):
 }
 
 def get_user_repos(user):
-    # repos = requests.get(f'https://api.github.com/users/{user}/repos', headers=headers).json()
-    repos = cache.get()
-    # return list(map(lambda x: x['description'], repos))
-    # return parse_descriptions(repos)
+    repos = requests.get(f'https://api.github.com/users/{user}/repos', headers=headers).json()
+    # if internet is not working:
+    # repos = cache.get()
     return list(map(lambda x: get_repo_info(x), repos))
-    # for j in r.json():
-      #   repo_name = j["name"]
-       #  req = requests.get(f"{get_github_link(repo_name)}/topics", headers=headers)
 
 # tag type can be location or cateogry
 def parse_descriptions(repos, regex_type):
@@ -57,7 +52,6 @@ def parse_descriptions(repos, regex_type):
             categorized_repos[tag] = [repo]
     #return list(map(lambda x: match_github_description(x, regex_type), repos))
     return categorized_repos
-# compdef 
 
 def get_user_repos_by_tag(user, tag):
     if tag is 'location':
