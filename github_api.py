@@ -11,9 +11,8 @@ default_categories = ['uncategorized']
 def get_github_link(repo_name, user):
     return f'{github_api}/repos/{user}/{repo_name}'
 
+# re.search(r'([a-zA-Z0-9-]*)', get_github_link).group()
 location_regex = re.compile(r'location:([a-zA-Z0-9-]*)')
-#result = location_regex.match("home")
-#print(result)
 category_regex = re.compile(r'category:([a-zA-Z0-9-]*)')
 
 print(category_regex)
